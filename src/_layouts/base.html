@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %} - తెలుగు వార్తలు</title>
+    <meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
+    <meta name="keywords" content="{% if keywords %}{{ keywords }}{% else %}తెలుగు వార్తలు, తాజా వార్తలు, ఆంధ్రప్రదేశ్, తెలంగాణ, బ్రేకింగ్ న్యూస్{% endif %}">
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
+    <meta property="og:description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="te_IN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
+    <meta name="twitter:description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="canonical" href="{{ page.url | absoluteUrl }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="/">తెలుగు వార్తలు</a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">హోమ్</a></li>
+                    <li><a href="/categories/state/">రాష్ట్ర వార్తలు</a></li>
+                    <li><a href="/categories/national/">జాతీయ వార్తలు</a></li>
+                    <li><a href="/categories/international/">అంతర్జాతీయ వార్తలు</a></li>
+                    <li><a href="/categories/sports/">క్రీడలు</a></li>
+                    <li><a href="/admin/" class="admin-link">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {{ content }}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 తెలుగు వార్తలు. అన్ని హక్కులు రక్షించబడినవి.</p>
+        </div>
+    </footer>
+</body>
+</html>
