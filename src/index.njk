@@ -11,34 +11,6 @@ description: తాజా తెలుగు వార్తలు, బ్రే
     </div>
 </section>
 
-<section class="featured-news">
-    <h2>ప్రధాన వార్తలు</h2>
-    <div class="news-grid">
-        {% for post in collections.news | reverse | slice: 0, 6 %}
-        <article class="news-card">
-            {% if post.data.image %}
-            <div class="news-image">
-                <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
-            </div>
-            {% endif %}
-            <div class="news-content">
-                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-                <p class="news-excerpt">{{ post.data.description }}</p>
-                <div class="news-meta">
-                    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d %B, %Y" }}</time>
-                    {% if post.data.categories %}
-                    <span class="categories">
-                        {% for category in post.data.categories %}
-                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
-                        {% endfor %}
-                    </span>
-                    {% endif %}
-                </div>
-            </div>
-        </article>
-        {% endfor %}
-    </div>
-</section>
 
 <section class="categories-section">
     <h2>వార్తా వర్గాలు</h2>
