@@ -50,6 +50,17 @@ collections:
           - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
           - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
           - { label: "Keywords", name: "keywords", widget: "string", required: false }
+      - label: "Marketing"
+        name: "marketing"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Featured Article", name: "featured", widget: "boolean", default: false }
+          - { label: "Trending Article", name: "trending", widget: "boolean", default: false }
+          - { label: "Breaking News", name: "breaking", widget: "boolean", default: false }
+          - { label: "Exclusive Content", name: "exclusive", widget: "boolean", default: false }
+          - { label: "Sponsored Content", name: "sponsored", widget: "boolean", default: false }
+          - { label: "Ad Campaign ID", name: "ad_campaign", widget: "string", required: false }
 
   - name: "pages"
     label: "Pages"
