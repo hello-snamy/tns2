@@ -12,14 +12,53 @@
     <meta property="og:description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="te_IN">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
+    <meta property="og:description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
+    <meta property="og:type" content="{% if page.url == '/' %}website{% else %}article{% endif %}">
+    <meta property="og:url" content="{{ page.url | absoluteUrl }}">
+    <meta property="og:locale" content="te_IN">
+    <meta property="og:site_name" content="తెలుగు వార్తలు">
+    
+    {% if image %}
+    <meta property="og:image" content="{{ image | absoluteUrl }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    {% else %}
+    <meta property="og:image" content="{{ '/images/og-default.jpg' | absoluteUrl }}">
+    {% endif %}
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
     <meta name="twitter:description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
+    <meta name="twitter:site" content="@TeluguNews">
+    <meta name="twitter:creator" content="@TeluguNews">
+
+    {% if image %}
+    <meta name="twitter:image" content="{{ image | absoluteUrl }}">
+    {% else %}
+    <meta name="twitter:image" content="{{ '/images/twitter-default.jpg' | absoluteUrl }}">
+    {% endif %}
     
+    <!-- Additional Social Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ page.url | absoluteUrl }}">
+    
+    <!-- Facebook App ID (Optional) -->
+    <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID">
+    
+    <!-- WhatsApp Specific -->
+    <meta property="og:image:alt" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
+    
+    <link rel="stylesheet" href="/tns2/css/social-share.css">
     <link rel="stylesheet" href="/tns2/css/style.css">
     <link rel="canonical" href="{{ page.url | absoluteUrl }}">
+
+
+
 </head>
 <body>
     <header class="header">
@@ -34,20 +73,31 @@
                     <li><a href="/tns2/categories/national/">జాతీయ వార్తలు</a></li>
                     <li><a href="/tns2/categories/international/">అంతర్జాతీయ వార్తలు</a></li>
                     <li><a href="/tns2/categories/sports/">క్రీడలు</a></li>
-                    <li><a href="/tns2/admin/" class="admin-link">Admin</a></li>
+                    <li><a href="/admin/" class="admin-link">Admin</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <main class="main-content">
-        {{ content | safe }}
+        {{ content }}
     </main>
 
     <footer class="footer">
         <div class="footer-content">
+            <div class="social-links">
+                <span>మమ్మల్ని ఫోలో చేయండి:</span>
+                <a href="https://facebook.com/YourTeluguNews" class="social-link facebook" target="_blank">Facebook</a>
+                <a href="https://twitter.com/YourTeluguNews" class="social-link twitter" target="_blank">Twitter</a>
+                <a href="https://youtube.com/YourTeluguNews" class="social-link youtube" target="_blank">YouTube</a>
+                <a href="https://t.me/YourTeluguNews" class="social-link telegram" target="_blank">Telegram</a>
+                <a href="https://api.whatsapp.com/send?text=తెలుగు వార్తలు - {{ site.url | url_encode }}" class="social-link whatsapp" target="_blank">WhatsApp</a>
+            </div>
             <p>&copy; 2024 తెలుగు వార్తలు. అన్ని హక్కులు రక్షించబడినవి.</p>
         </div>
     </footer>
+
+    <!-- Social Share Script -->
+    <script src="/tns2/js/social-share.js"></script>
 </body>
 </html>
