@@ -23,6 +23,14 @@ collections:
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Social Media"
+        name: "social"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Social Media Title", name: "social_title", widget: "string", required: false }
+          - { label: "Social Media Description", name: "social_description", widget: "text", required: false }
+          - { label: "Social Media Image", name: "social_image", widget: "image", required: false }      
       - label: "Categories"
         name: "categories"
         widget: "select"
