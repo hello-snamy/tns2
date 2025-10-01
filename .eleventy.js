@@ -30,7 +30,11 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("news", function(collection) {
         return collection.getFilteredByGlob("src/_posts/*.md");
     });
-
+    
+    eleventyConfig.addCollection("latestNews", function(collectionApi) {
+      return collectionApi.getFilteredByTag("news").reverse().slice(0, 6);
+    });
+    
     return {
         dir: {
             input: "src",
