@@ -1,0 +1,12 @@
+{
+  "hero_title": "Welcome to Telugu News",
+  "hero_description": "Stay updated with the latest news in Telugu",
+  "featured_news": [
+    {
+      "id": "2024-01-01-ఆంధ్రప్రదేశ్లో-కొత్త-ప్రాజెక్ట్-ప్రారంభం"
+    },
+    {
+      "id": "2024-01-02-తెలంగాణ-వ్యవసాయం-ప్రాజెక్ట్"
+    }
+  ]
+}
