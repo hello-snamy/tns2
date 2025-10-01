@@ -17,11 +17,6 @@ description: తాజా తెలుగు వార్తలు, బ్రే
     <div class="news-grid">
         {% for post in collections.latestNews %}
         <article class="news-card">
-            {% if post.data.image %}
-            <div class="news-image">
-                <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
-            </div>
-            {% endif %}
             <div class="news-content">
                 <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
                 <p class="news-excerpt">{{ post.data.description }}</p>
