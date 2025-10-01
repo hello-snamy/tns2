@@ -1,0 +1,63 @@
+---
+layout: base
+title: తాజా తెలుగు వార్తలు
+description: తాజా తెలుగు వార్తలు, బ్రేకింగ్ న్యూస్, రాష్ట్ర వార్తలు, జాతీయ, అంతర్జాతీయ వార్తలు
+---
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>తాజా తెలుగు వార్తలు</h1>
+        <p>బ్రేకింగ్ న్యూస్, రాష్ట్ర వార్తలు, జాతీయ, అంతర్జాతీయ వార్తలు</p>
+    </div>
+</section>
+
+<section class="featured-news">
+    <h2>ప్రధాన వార్తలు</h2>
+    <div class="news-grid">
+        {% for post in collections.news | reverse | limit: 6 %}
+        <article class="news-card">
+            {% if post.data.image %}
+            <div class="news-image">
+                <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+            </div>
+            {% endif %}
+            <div class="news-content">
+                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="news-excerpt">{{ post.data.description }}</p>
+                <div class="news-meta">
+                    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d %B, %Y" }}</time>
+                    {% if post.data.categories %}
+                    <span class="categories">
+                        {% for category in post.data.categories %}
+                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="categories-section">
+    <h2>వార్తా వర్గాలు</h2>
+    <div class="categories-grid">
+        <a href="/categories/state/" class="category-card">
+            <h3>రాష్ట్ర వార్తలు</h3>
+            <p>ఆంధ్రప్రదేశ్ & తెలంగాణ</p>
+        </a>
+        <a href="/categories/national/" class="category-card">
+            <h3>జాతీయ వార్తలు</h3>
+            <p>దేశం నలుమూలల నుండి వార్తలు</p>
+        </a>
+        <a href="/categories/international/" class="category-card">
+            <h3>అంతర్జాతీయ వార్తలు</h3>
+            <p>ప్రపంచ వార్తలు</p>
+        </a>
+        <a href="/categories/sports/" class="category-card">
+            <h3>క్రీడలు</h3>
+            <p>క్రికెట్, ఇతర క్రీడలు</p>
+        </a>
+    </div>
+</section>
