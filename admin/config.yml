@@ -1,0 +1,55 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "news"
+    label: "News Articles"
+    folder: "src/_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options: 
+          - { label: "రాష్ట్ర వార్తలు", value: "state" }
+          - { label: "జాతీయ వార్తలు", value: "national" }
+          - { label: "అంతర్జాతీయ వార్తలు", value: "international" }
+          - { label: "క్రీడలు", value: "sports" }
+          - { label: "వ్యవసాయం", value: "agriculture" }
+          - { label: "సినిమా", value: "cinema" }
+          - { label: "వ్యాపారం", value: "business" }
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        fields:
+          - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+          - { label: "Keywords", name: "keywords", widget: "string", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "src/_data/home.json"
+        fields:
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+          - { label: "Featured News", name: "featured_news", widget: "list", fields: [{label: "News ID", name: "id", widget: "string"}] }
