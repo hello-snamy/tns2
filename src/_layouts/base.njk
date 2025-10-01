@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+
     <title>{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %} - తెలుగు వార్తలు</title>
     <meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
     <meta name="keywords" content="{% if keywords %}{{ keywords }}{% else %}తెలుగు వార్తలు, తాజా వార్తలు, ఆంధ్రప్రదేశ్, తెలంగాణ, బ్రేకింగ్ న్యూస్{% endif %}">
@@ -52,15 +61,56 @@
     
     <!-- WhatsApp Specific -->
     <meta property="og:image:alt" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
-    
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{% if page.url == '/' %}NewsWebsite{% else %}NewsArticle{% endif %}",
+        "headline": "{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}",
+        "description": "{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}",
+        "datePublished": "{{ date }}",
+        "dateModified": "{{ date }}",
+        "author": {
+            "@type": "Organization",
+            "name": "తెలుగు వార్తలు"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "తెలుగు వార్తలు",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ '/images/logo.png' | absoluteUrl }}"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page.url | absoluteUrl }}"
+        }
+        {% if image %},
+        "image": {
+            "@type": "ImageObject",
+            "url": "{{ image | absoluteUrl }}",
+            "width": 1200,
+            "height": 630
+        }
+        {% endif %}
+    }
+    </script>
+
+
     <link rel="stylesheet" href="/tns2/css/social-share.css">
     <link rel="stylesheet" href="/tns2/css/style.css">
+    <link rel="stylesheet" href="/tns2/css/marketing.css">
     <link rel="canonical" href="{{ page.url | absoluteUrl }}">
-
-
 
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
