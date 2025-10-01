@@ -18,7 +18,7 @@
     <meta name="twitter:title" content="{% if meta_title %}{{ meta_title }}{% else %}{{ title }}{% endif %}">
     <meta name="twitter:description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ description }}{% endif %}">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/tns2/css/style.css">
     <link rel="canonical" href="{{ page.url | absoluteUrl }}">
 </head>
 <body>
@@ -30,18 +30,18 @@
                 </div>
                 <ul class="nav-menu">
                     <li><a href="/">హోమ్</a></li>
-                    <li><a href="/categories/state/">రాష్ట్ర వార్తలు</a></li>
-                    <li><a href="/categories/national/">జాతీయ వార్తలు</a></li>
-                    <li><a href="/categories/international/">అంతర్జాతీయ వార్తలు</a></li>
-                    <li><a href="/categories/sports/">క్రీడలు</a></li>
-                    <li><a href="/admin/" class="admin-link">Admin</a></li>
+                    <li><a href="/tns2/categories/state/">రాష్ట్ర వార్తలు</a></li>
+                    <li><a href="/tns2/categories/national/">జాతీయ వార్తలు</a></li>
+                    <li><a href="/tns2/categories/international/">అంతర్జాతీయ వార్తలు</a></li>
+                    <li><a href="/tns2/categories/sports/">క్రీడలు</a></li>
+                    <li><a href="/tns2/admin/" class="admin-link">Admin</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <main class="main-content">
-        {{ content }}
+        {{ content | safe }}
     </main>
 
     <footer class="footer">
