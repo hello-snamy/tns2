@@ -8,8 +8,8 @@
     "dev": "eleventy --serve --watch"
   },
   "devDependencies": {
-    "@11ty/eleventy": "*",
-    "@quasibit/eleventy-plugin-sitemap": "*",
-    "eleventy-plugin-seo": "*"
+    "@11ty/eleventy": "^2.0.1",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
+    "eleventy-plugin-seo": "^0.5.2"
   }
 }
