@@ -9,7 +9,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginSEO, {
         title: "తెలుగు వార్తలు",
         description: "తాజా తెలుగు వార్తలు, బ్రేకింగ్ న్యూస్",
-        url: "https://your-site.netlify.app",
+        url: "https://hello-snamy.github.io/tns2",
         author: "Telugu News Team",
         twitter: "telugunews",
         image: "/images/og-image.jpg"
@@ -34,7 +34,39 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("latestNews", function(collectionApi) {
       return collectionApi.getFilteredByTag("news").reverse().slice(0, 6);
     });
+
+    // Add custom filters
+    eleventyConfig.addFilter("isoDate", function(date) {
+        return date.toISOString().split('T')[0];
+    });
     
+    eleventyConfig.addFilter("readableDate", function(date) {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        return date.toLocaleDateString('te-IN', options);
+    });
+    
+    eleventyConfig.addFilter("truncate", function(str, length) {
+        if (!str) return '';
+        if (str.length <= length) return str;
+        return str.substring(0, length) + '...';
+    });    
+    // Add this filter for absolute URLs
+    eleventyConfig.addFilter("absoluteUrl", (url) => {
+        const siteUrl = process.env.URL || "https://hello-snamy.github.io/tns2";
+        return new URL(url, siteUrl).toString();
+    });
+
+    // Add url_encode filter
+    eleventyConfig.addFilter("url_encode", (url) => {
+        return encodeURIComponent(url);
+    });
+
+    
+    // Add date filter to format dates
+    eleventyConfig.addFilter("date", (date, formatString) => {
+        return format(new Date(date), formatString || "dd MMM yyyy");
+    });
+
     return {
         dir: {
             input: "src",
