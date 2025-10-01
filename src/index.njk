@@ -14,7 +14,7 @@ description: తాజా తెలుగు వార్తలు, బ్రే
 <section class="featured-news">
     <h2>ప్రధాన వార్తలు</h2>
     <div class="news-grid">
-        {% for post in collections.news | reverse | limit: 6 %}
+        {% for post in collections.news | reverse | slice: 0, 6 %}
         <article class="news-card">
             {% if post.data.image %}
             <div class="news-image">
