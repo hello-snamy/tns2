@@ -1,0 +1,31 @@
+# Site Settings
+title: "తెలుగు వార్తలు - Telugu News"
+description: "తాజా తెలుగు వార్తలు, బ్రేకింగ్ న్యూస్, రాష్ట్ర వార్తలు, జాతీయ, అంతర్జాతీయ వార్తలు"
+url: "https://hello-snamy.github.io/tns2"
+language: "te"
+author: "Telugu News Team"
+
+# Build Settings
+permalink: "/news/{{ title | slug }}/"
+timezone: "Asia/Kolkata"
+
+# Collections
+collections:
+  news:
+    output: true
+    permalink: "/news/{{ title | slug }}/"
+  categories:
+    output: false
+
+# Default Data
+defaults:
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+      tags: "news"
+  - scope:
+      path: ""
+    values:
+      layout: "base"
