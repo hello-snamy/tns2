@@ -1,0 +1,15 @@
+{
+  "name": "telugu-news-site",
+  "version": "1.0.0",
+  "description": "Telugu News Website with Decap CMS",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "dev": "eleventy --serve --watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "*",
+    "@quasibit/eleventy-plugin-sitemap": "*",
+    "eleventy-plugin-seo": "*"
+  }
+}
