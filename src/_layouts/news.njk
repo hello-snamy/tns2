@@ -6,11 +6,11 @@ layout: base
     <header class="article-header">
         <h1 class="article-title">{{ title }}</h1>
         <div class="article-meta">
-            <time datetime="{{ date | date: '%Y-%m-%d' }}">{{ date | date: "%d %B, %Y" }}</time>
+            <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d %B, %Y") }}</time>
             {% if categories %}
             <span class="categories">
                 {% for category in categories %}
-                <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
+                <a href="/tns2/categories/{{ category }}/" class="category-tag">{{ category }}</a>
                 {% endfor %}
             </span>
             {% endif %}
