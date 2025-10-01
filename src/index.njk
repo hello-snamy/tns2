@@ -4,13 +4,17 @@ title: తాజా తెలుగు వార్తలు
 description: తాజా తెలుగు వార్తలు, బ్రేకింగ్ న్యూస్, రాష్ట్ర వార్తలు, జాతీయ, అంతర్జాతీయ వార్తలు
 ---
 
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
         <h1>తాజా తెలుగు వార్తలు</h1>
         <p>బ్రేకింగ్ న్యూస్, రాష్ట్ర వార్తలు, జాతీయ, అంతర్జాతీయ వార్తలు</p>
+        <div class="hero-cta">
+            <a href="#featured-news" class="cta-button">తాజా వార్తలు చదవండి</a>
+            <a href="/admin/" class="cta-button secondary">వార్తలు సేర్చండి</a>
+        </div>
     </div>
 </section>
-
 
 <section class="featured-news">
     <h2>ప్రధాన వార్తలు</h2>
@@ -58,7 +62,71 @@ description: తాజా తెలుగు వార్తలు, బ్రే
     </div>
 </section>
 
-<!-- Add these sections to your homepage -->
+<!-- Breaking News Ticker -->
+<section class="breaking-news">
+    <div class="breaking-label">
+        <span>బ్రేకింగ్ న్యూస్</span>
+    </div>
+    <div class="breaking-content">
+        <marquee behavior="scroll" direction="left">
+            <span class="breaking-item">🔴 ఆంధ్రప్రదేశ్ బడ్జెట్ సదస్సు ఫిబ్రవరి 5న</span>
+            <span class="breaking-item">🔴 తెలంగాణలో కొత్త ఉద్యోగాల ప్రకటన</span>
+            <span class="breaking-item">🔴 భారత్ vs ఇంగ్లండ్ టెస్ట్ సిరీస్ ప్రారంభం</span>
+        </marquee>
+    </div>
+</section>
+
+<!-- Ad Unit - Leaderboard -->
+<div class="ad-container">
+    <span class="ad-label">ప్రకటన</span>
+    <div class="ad-unit leaderboard" data-position="header" data-type="banner">
+        <!-- Ad content will be loaded here -->
+        Leaderboard Ad (728x90)
+    </div>
+</div>
+
+<!-- Featured News Section -->
+<section id="featured-news" class="featured-news">
+    <div class="section-header">
+        <h2>ప్రధాన వార్తలు</h2>
+        <a href="/news/" class="view-all">అన్నీ చూడండి</a>
+    </div>
+    
+    <div class="featured-grid">
+        {% for post in collections.news | limit: 3 %}
+        <article class="featured-card">
+            {% if post.data.image %}
+            <div class="featured-image">
+                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
+                {% if post.data.marketing and post.data.marketing.breaking %}
+                <span class="news-badge breaking">బ్రేకింగ్</span>
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="featured-content">
+                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="news-excerpt">{{ post.data.description | truncate: 150 }}</p>
+                <div class="news-meta">
+                    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d %B, %Y" }}</time>
+                    {% if post.data.categories %}
+                    <span class="categories">
+                        {% for category in post.data.categories %}
+                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+                <a href="{{ post.url }}" class="read-more">చదవండి →</a>
+            </div>
+        </article>
+        {% else %}
+        <div class="no-news">
+            <h3>ఇంకా వార్తలు లేవు</h3>
+            <p>మొదటి వార్తను సేర్చడానికి <a href="/admin/">అడ్మిన్ పేజీ</a>కి వెళ్లండి</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 <!-- Newsletter Section -->
 <section class="newsletter-section">
@@ -69,12 +137,15 @@ description: తాజా తెలుగు వార్తలు, బ్రే
             <input type="email" class="newsletter-input" placeholder="మీ ఈమెయిల్ చిరునామా" required>
             <button type="submit" class="newsletter-button">చందా పొందండి</button>
         </form>
+        <p class="newsletter-note">మేము మీ ప్రైవసీని గౌరవిస్తాము. ఎప్పుడైనా అన్సబ్స్క్రైబ్ చేసుకోవచ్చు</p>
     </div>
 </section>
 
 <!-- Trending News Widget -->
 <section class="trending-widget">
-    <h2>🔥 ప్రస్తుతం ట్రెండింగ్‌లో</h2>
+    <div class="section-header">
+        <h2>🔥 ప్రస్తుతం ట్రెండింగ్‌లో</h2>
+    </div>
     <ul class="trending-list">
         <li class="trending-item">
             <div class="trending-rank">1</div>
@@ -90,15 +161,273 @@ description: తాజా తెలుగు వార్తలు, బ్రే
                 <span class="trending-views">12K వీక్షణలు</span>
             </div>
         </li>
-        <!-- Add more trending items -->
+        <li class="trending-item">
+            <div class="trending-rank">3</div>
+            <div class="trending-content">
+                <h3><a href="/news/sample-article-3/">హైదరాబాద్ లో మెట్రో రైలు సేవలు విస్తరణ</a></h3>
+                <span class="trending-views">10K వీక్షణలు</span>
+            </div>
+        </li>
+        <li class="trending-item">
+            <div class="trending-rank">4</div>
+            <div class="trending-content">
+                <h3><a href="/news/sample-article-4/">విజయవాడ లో సాంస్కృతిక ఉత్సవాలు ప్రారంభం</a></h3>
+                <span class="trending-views">8K వీక్షణలు</span>
+            </div>
+        </li>
+        <li class="trending-item">
+            <div class="trending-rank">5</div>
+            <div class="trending-content">
+                <h3><a href="/news/sample-article-5/">క్రికెట్ ప్రేమికులకు శుభవార్తలు</a></h3>
+                <span class="trending-views">7K వీక్షణలు</span>
+            </div>
+        </li>
     </ul>
 </section>
 
-<!-- Ad Units -->
+<!-- Ad Unit - Rectangle -->
 <div class="ad-container">
     <span class="ad-label">ప్రకటన</span>
-    <div class="ad-unit leaderboard" data-position="header" data-type="banner">
+    <div class="ad-unit rectangle" data-position="middle" data-type="rectangle">
         <!-- Ad content will be loaded here -->
-        Leaderboard Ad (728x90)
+        Rectangle Ad (300x250)
     </div>
 </div>
+
+<!-- Categories Section -->
+<section class="categories-section">
+    <div class="section-header">
+        <h2>వార్తా వర్గాలు</h2>
+        <p>మీకు అవసరమైన వర్గం ఎంచుకోండి</p>
+    </div>
+    <div class="categories-grid">
+        <a href="/categories/state/" class="category-card">
+            <div class="category-icon">🏛️</div>
+            <h3>రాష్ట్ర వార్తలు</h3>
+            <p>ఆంధ్రప్రదేశ్ & తెలంగాణ తాజా వార్తలు</p>
+            <span class="category-count">25 వార్తలు</span>
+        </a>
+        
+        <a href="/categories/national/" class="category-card">
+            <div class="category-icon">🇮🇳</div>
+            <h3>జాతీయ వార్తలు</h3>
+            <p>దేశం నలుమూలల నుండి వార్తలు</p>
+            <span class="category-count">18 వార్తలు</span>
+        </a>
+        
+        <a href="/categories/international/" class="category-card">
+            <div class="category-icon">🌍</div>
+            <h3>అంతర్జాతీయ వార్తలు</h3>
+            <p>ప్రపంచ వార్తలు, అంతర్జాతీయ సంబంధాలు</p>
+            <span class="category-count">12 వార్తలు</span>
+        </a>
+        
+        <a href="/categories/sports/" class="category-card">
+            <div class="category-icon">⚽</div>
+            <h3>క్రీడలు</h3>
+            <p>క్రికెట్, ఇతర క్రీడలు, టూర్నమెంట్ విశేషాలు</p>
+            <span class="category-count">15 వార్తలు</span>
+        </a>
+        
+        <a href="/categories/cinema/" class="category-card">
+            <div class="category-icon">🎬</div>
+            <h3>సినిమా</h3>
+            <p>టాలీవుడ్, బాలీవుడ్, చిత్ర సమీక్షలు</p>
+            <span class="category-count">20 వార్తలు</span>
+        </a>
+        
+        <a href="/categories/business/" class="category-card">
+            <div class="category-icon">💼</div>
+            <h3>వ్యాపారం</h3>
+            <p>శేర్ మార్కెట్, ఆర్థిక వార్తలు, వ్యాపార అవకాశాలు</p>
+            <span class="category-count">10 వార్తలు</span>
+        </a>
+    </div>
+</section>
+
+<!-- Latest News Grid -->
+<section class="latest-news">
+    <div class="section-header">
+        <h2>తాజా వార్తలు</h2>
+        <a href="/news/" class="view-all">మరిన్ని వార్తలు</a>
+    </div>
+    
+    <div class="news-grid">
+        {% for post in collections.news %}
+        <article class="news-card">
+            {% if post.data.image %}
+            <div class="news-image">
+                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
+                {% if post.data.marketing %}
+                    {% if post.data.marketing.breaking %}
+                    <span class="news-badge breaking">బ్రేకింగ్</span>
+                    {% endif %}
+                    {% if post.data.marketing.trending %}
+                    <span class="news-badge trending">ట్రెండింగ్</span>
+                    {% endif %}
+                    {% if post.data.marketing.exclusive %}
+                    <span class="news-badge exclusive">ఎక్స్‌క్లూసివ్</span>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="news-content">
+                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="news-excerpt">{{ post.data.description }}</p>
+                <div class="news-meta">
+                    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d %B, %Y" }}</time>
+                    {% if post.data.categories %}
+                    <span class="categories">
+                        {% for category in post.data.categories %}
+                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+        {% else %}
+        <div class="no-news-message">
+            <div class="empty-state">
+                <h3>ఇంకా వార్తలు లేవు</h3>
+                <p>మొదటి వార్తను సేర్చడానికి అడ్మిన్ పేజీకి వెళ్లండి</p>
+                <a href="/admin/" class="cta-button">వార్తలు సేర్చండి</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% if collections.news.length > 6 %}
+    <div class="load-more-container">
+        <button class="load-more-button">మరిన్ని వార్తలు లోడ్ చేయండి</button>
+    </div>
+    {% endif %}
+</section>
+
+<!-- Push Notification Prompt (Hidden by default) -->
+<div class="push-notification">
+    <button class="push-close">&times;</button>
+    <h3>తాజా వార్తల నోటిఫికేషన్లు</h3>
+    <p>బ్రేకింగ్ న్యూస్ మీకు మొదటిగా చేరుకోవడానికి అనుమతించండి</p>
+    <div class="push-notification-buttons">
+        <button class="push-allow">అనుమతించండి</button>
+        <button class="push-deny">తర్వాత</button>
+    </div>
+</div>
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress">
+    <div class="reading-progress-bar"></div>
+</div>
+
+<!-- Exit Intent Popup -->
+<div class="exit-popup">
+    <div class="exit-popup-content">
+        <button class="exit-popup-close">&times;</button>
+        <h2>వెళ్లే ముందు!</h2>
+        <p>తాజా వార్తలను మిస్ చేయకండి. మా వార్తాలేఖకు చందా పొందండి</p>
+        <form class="exit-newsletter-form">
+            <input type="email" placeholder="మీ ఈమెయిల్ చిరునామా" required>
+            <button type="submit">సబ్‌స్క్రైబ్</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Simple JavaScript for interactive elements
+document.addEventListener('DOMContentLoaded', function() {
+    // Load More Button
+    const loadMoreBtn = document.querySelector('.load-more-button');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            this.textContent = 'లోడ్ అవుతోంది...';
+            setTimeout(() => {
+                // Simulate loading more content
+                this.style.display = 'none';
+            }, 1000);
+        });
+    }
+    
+    // Push Notification
+    const pushNotification = document.querySelector('.push-notification');
+    const pushClose = document.querySelector('.push-close');
+    const pushAllow = document.querySelector('.push-allow');
+    const pushDeny = document.querySelector('.push-deny');
+    
+    if (pushNotification && localStorage.getItem('pushPrompted') !== 'true') {
+        setTimeout(() => {
+            pushNotification.style.display = 'block';
+        }, 5000);
+    }
+    
+    if (pushClose) {
+        pushClose.addEventListener('click', () => {
+            pushNotification.style.display = 'none';
+            localStorage.setItem('pushPrompted', 'true');
+        });
+    }
+    
+    if (pushAllow) {
+        pushAllow.addEventListener('click', () => {
+            // Push notification permission logic would go here
+            pushNotification.style.display = 'none';
+            localStorage.setItem('pushPrompted', 'true');
+            alert('నోటిఫికేషన్లు అనుమతించబడ్డాయి!');
+        });
+    }
+    
+    if (pushDeny) {
+        pushDeny.addEventListener('click', () => {
+            pushNotification.style.display = 'none';
+            localStorage.setItem('pushPrompted', 'true');
+        });
+    }
+    
+    // Exit Popup
+    const exitPopup = document.querySelector('.exit-popup');
+    const exitClose = document.querySelector('.exit-popup-close');
+    
+    if (exitClose) {
+        exitClose.addEventListener('click', () => {
+            exitPopup.classList.remove('show');
+        });
+    }
+    
+    // Newsletter Form
+    const newsletterForms = document.querySelectorAll('.newsletter-form, .exit-newsletter-form');
+    newsletterForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                // Simple form submission feedback
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
+                button.textContent = 'సబ్మిట్ అవుతోంది...';
+                
+                setTimeout(() => {
+                    button.textContent = 'సబ్‌స్క్రైబ్ చేయబడింది!';
+                    this.reset();
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                }, 1000);
+                
+                // Close exit popup if it's open
+                if (form.closest('.exit-popup')) {
+                    exitPopup.classList.remove('show');
+                }
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
