@@ -99,7 +99,12 @@ class MarketingManager {
             if (response.ok) {
                 this.showMessage('వార్తాలేఖకు చందా పూర్తి అయ్యింది! ధన్యవాదాలు.', 'success');
                 this.trackEvent('newsletter_subscription', { email });
-                
+
+                    // Use a third-party service like Mailchimp's embedded form
+                // Or Google Forms, etc.
+                // this.trackEvent('newsletter_attempt', { email });
+                // this.showMessage('చందా వివరాలు త్వరలో నవీకరించబడతాయి', 'info');
+
                 // Reset form
                 document.querySelector('.newsletter-input').value = '';
             } else {
