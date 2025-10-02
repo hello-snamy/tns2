@@ -1,6 +1,8 @@
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 const pluginSEO = require("eleventy-plugin-seo");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
+// Import the format function from date-fns
+const { format } = require("date-fns");
 
 module.exports = function(eleventyConfig) {
     // Add plugins
