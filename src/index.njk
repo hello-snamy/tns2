@@ -68,13 +68,15 @@ description: తాజా తెలుగు వార్తలు, బ్రే
         <a href="/news/" class="view-all">అన్నీ చూడండి</a>
     </div>
     
-    <div class="featured-grid">
-        {% for post in collections.latestNews  %}
+   <div class="featured-grid">
+        {% for post in collections.latestNews %}
         <article class="featured-card">
             {% if post.data.image %}
             <div class="featured-image">
                 <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
-
+                {% if post.data.marketing and post.data.marketing.breaking %}
+                <span class="news-badge breaking">బ్రేకింగ్</span>
+                {% endif %}
             </div>
             {% endif %}
             <div class="featured-content">
