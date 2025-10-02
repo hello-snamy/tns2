@@ -194,51 +194,7 @@ description: తాజా తెలుగు వార్తలు, బ్రే
         <a href="/news/" class="view-all">మరిన్ని వార్తలు</a>
     </div>
     
-    <div class="news-grid">
-        {% for post in collections.news %}
-        <article class="news-card">
-            {% if post.data.image %}
-            <div class="news-image">
-                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
-                {% if post.data.marketing %}
-                    {% if post.data.marketing.breaking %}
-                    <span class="news-badge breaking">బ్రేకింగ్</span>
-                    {% endif %}
-                    {% if post.data.marketing.trending %}
-                    <span class="news-badge trending">ట్రెండింగ్</span>
-                    {% endif %}
-                    {% if post.data.marketing.exclusive %}
-                    <span class="news-badge exclusive">ఎక్స్‌క్లూసివ్</span>
-                    {% endif %}
-                {% endif %}
-            </div>
-            {% endif %}
-            <div class="news-content">
-                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-                <p class="news-excerpt">{{ post.data.description }}</p>
-                <div class="news-meta">
-                    <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d %B, %Y") }}</time>
-                    {% if post.data.categories %}
-                    <span class="categories">
-                        {% for category in post.data.categories %}
-                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
-                        {% endfor %}
-                    </span>
-                    {% endif %}
-                </div>
-            </div>
-        </article>
-        {% else %}
-        <div class="no-news-message">
-            <div class="empty-state">
-                <h3>ఇంకా వార్తలు లేవు</h3>
-                <p>మొదటి వార్తను సేర్చడానికి అడ్మిన్ పేజీకి వెళ్లండి</p>
-                <a href="/admin/" class="cta-button">వార్తలు సేర్చండి</a>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    
+ 
     {% if collections.news.length > 6 %}
     <div class="load-more-container">
         <button class="load-more-button">మరిన్ని వార్తలు లోడ్ చేయండి</button>
