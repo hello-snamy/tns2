@@ -62,7 +62,7 @@ description: తాజా తెలుగు వార్తలు, బ్రే
                 <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
                 <p class="news-excerpt">{{ post.data.description | truncate(150) }}</p>
                 <div class="news-meta">
-                    <time datetime="{{ post.date | date('YYYY-MM-DD') }}">{{ post.date | date("%d %B, %Y") }}</time>
+                    <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d %B, %Y") }}</time>
                     {% if post.data.categories %}
                     <span class="categories">
                         {% for category in post.data.categories %}
@@ -230,7 +230,7 @@ description: తాజా తెలుగు వార్తలు, బ్రే
                 <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
                 <p class="news-excerpt">{{ post.data.description }}</p>
                 <div class="news-meta">
-                    <time datetime="{{ post.date | date('YYYY-MM-DD') }}">{{ post.date | date("%d %B, %Y") }}</time>
+                    <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d %B, %Y") }}</time>
                     {% if post.data.categories %}
                     <span class="categories">
                         {% for category in post.data.categories %}
