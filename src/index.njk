@@ -16,28 +16,6 @@ description: తాజా తెలుగు వార్తలు, బ్రే
     </div>
 </section>
 
-<section class="categories-section">
-    <h2>వార్తా వర్గాలు</h2>
-    <div class="categories-grid">
-        <a href="/tns2/categories/state/" class="category-card">
-            <h3>రాష్ట్ర వార్తలు</h3>
-            <p>ఆంధ్రప్రదేశ్ & తెలంగాణ</p>
-        </a>
-        <a href="/tns2/categories/national/" class="category-card">
-            <h3>జాతీయ వార్తలు</h3>
-            <p>దేశం నలుమూలల నుండి వార్తలు</p>
-        </a>
-        <a href="/tns2/categories/international/" class="category-card">
-            <h3>అంతర్జాతీయ వార్తలు</h3>
-            <p>ప్రపంచ వార్తలు</p>
-        </a>
-        <a href="/tns2/categories/sports/" class="category-card">
-            <h3>క్రీడలు</h3>
-            <p>క్రికెట్, ఇతర క్రీడలు</p>
-        </a>
-    </div>
-</section>
-
 <!-- Breaking News Ticker -->
 <section class="breaking-news">
     <div class="breaking-label">
@@ -67,7 +45,42 @@ description: తాజా తెలుగు వార్తలు, బ్రే
         <h2>ప్రధాన వార్తలు</h2>
         <a href="/news/" class="view-all">అన్నీ చూడండి</a>
     </div>
-
+    
+    <div class="featured-grid">
+        <!-- Fixed the for loop syntax -->
+        {% for post in collections.news | slice(0, 3) %}
+        <article class="featured-card">
+            {% if post.data.image %}
+            <div class="featured-image">
+                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
+                {% if post.data.marketing and post.data.marketing.breaking %}
+                <span class="news-badge breaking">బ్రేకింగ్</span>
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="featured-content">
+                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="news-excerpt">{{ post.data.description | truncate(150) }}</p>
+                <div class="news-meta">
+                    <time datetime="{{ post.date | date('YYYY-MM-DD') }}">{{ post.date | date("%d %B, %Y") }}</time>
+                    {% if post.data.categories %}
+                    <span class="categories">
+                        {% for category in post.data.categories %}
+                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+                <a href="{{ post.url }}" class="read-more">చదవండి →</a>
+            </div>
+        </article>
+        {% else %}
+        <div class="no-news">
+            <h3>ఇంకా వార్తలు లేవు</h3>
+            <p>మొదటి వార్తను సేర్చడానికి <a href="/admin/">అడ్మిన్ పేజీ</a>కి వెళ్లండి</p>
+        </div>
+        {% endfor %}
+    </div>
 </section>
 
 <!-- Newsletter Section -->
@@ -194,7 +207,51 @@ description: తాజా తెలుగు వార్తలు, బ్రే
         <a href="/news/" class="view-all">మరిన్ని వార్తలు</a>
     </div>
     
- 
+    <div class="news-grid">
+        {% for post in collections.news %}
+        <article class="news-card">
+            {% if post.data.image %}
+            <div class="news-image">
+                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
+                {% if post.data.marketing %}
+                    {% if post.data.marketing.breaking %}
+                    <span class="news-badge breaking">బ్రేకింగ్</span>
+                    {% endif %}
+                    {% if post.data.marketing.trending %}
+                    <span class="news-badge trending">ట్రెండింగ్</span>
+                    {% endif %}
+                    {% if post.data.marketing.exclusive %}
+                    <span class="news-badge exclusive">ఎక్స్‌క్లూసివ్</span>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="news-content">
+                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="news-excerpt">{{ post.data.description }}</p>
+                <div class="news-meta">
+                    <time datetime="{{ post.date | date('YYYY-MM-DD') }}">{{ post.date | date("%d %B, %Y") }}</time>
+                    {% if post.data.categories %}
+                    <span class="categories">
+                        {% for category in post.data.categories %}
+                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+        {% else %}
+        <div class="no-news-message">
+            <div class="empty-state">
+                <h3>ఇంకా వార్తలు లేవు</h3>
+                <p>మొదటి వార్తను సేర్చడానికి అడ్మిన్ పేజీకి వెళ్లండి</p>
+                <a href="/admin/" class="cta-button">వార్తలు సేర్చండి</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
     {% if collections.news.length > 6 %}
     <div class="load-more-container">
         <button class="load-more-button">మరిన్ని వార్తలు లోడ్ చేయండి</button>
@@ -320,12 +377,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-
-
-
-
-
-
-
-
