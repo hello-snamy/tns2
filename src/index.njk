@@ -47,7 +47,6 @@ description: తాజా తెలుగు వార్తలు, బ్రే
     </div>
     
     <div class="featured-grid">
-        <!-- Fixed the for loop syntax -->
         {% for post in collections.news | slice(0, 3) %}
         <article class="featured-card">
             {% if post.data.image %}
