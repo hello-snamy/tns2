@@ -67,41 +67,7 @@ description: తాజా తెలుగు వార్తలు, బ్రే
         <h2>ప్రధాన వార్తలు</h2>
         <a href="/news/" class="view-all">అన్నీ చూడండి</a>
     </div>
-    
-   <div class="featured-grid">
-        {% for post in collections.latestNews %}
-        <article class="featured-card">
-            {% if post.data.image %}
-            <div class="featured-image">
-                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" loading="lazy">
-                {% if post.data.marketing and post.data.marketing.breaking %}
-                <span class="news-badge breaking">బ్రేకింగ్</span>
-                {% endif %}
-            </div>
-            {% endif %}
-            <div class="featured-content">
-                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-                <p class="news-excerpt">{{ post.data.description | truncate: 150 }}</p>
-                <div class="news-meta">
-                    <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d %B, %Y") }}</time>
-                    {% if post.data.categories %}
-                    <span class="categories">
-                        {% for category in post.data.categories %}
-                        <a href="/categories/{{ category }}/" class="category-tag">{{ category }}</a>
-                        {% endfor %}
-                    </span>
-                    {% endif %}
-                </div>
-                <a href="{{ post.url }}" class="read-more">చదవండి →</a>
-            </div>
-        </article>
-        {% else %}
-        <div class="no-news">
-            <h3>ఇంకా వార్తలు లేవు</h3>
-            <p>మొదటి వార్తను సేర్చడానికి <a href="/admin/">అడ్మిన్ పేజీ</a>కి వెళ్లండి</p>
-        </div>
-        {% endfor %}
-    </div>
+
 </section>
 
 <!-- Newsletter Section -->
