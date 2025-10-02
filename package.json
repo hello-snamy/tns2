@@ -10,6 +10,8 @@
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
-    "eleventy-plugin-seo": "^0.5.2"
-  }
+    "eleventy-plugin-seo": "^0.5.2",
+    "date-fns": "*"
+  },
+  
 }
