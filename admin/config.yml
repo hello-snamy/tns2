@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: hello-snamy/staticpages2
   branch: main
+  base_url: http://173.249.49.45:9050
+  auth_endpoint: /auth/github
   commit_messages:
     create: 'Create {{collection}} "{{slug}}"'
     update: 'Update {{collection}} "{{slug}}"'
