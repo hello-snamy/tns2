@@ -3,4 +3,4 @@ backend:
   repo: hello-snamy/tns2
   branch: main
   base_url: https://suresh-issue-82.dcycleproject.org
-  auth_endpoint: /auth/github/repo/695a7bef9d0c2afc3eaeba0a
+  auth_endpoint: /auth/github/repo/695e49a0c8afd5f2e6db9cbf
